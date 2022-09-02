@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.red.domain.boards.Boards;
 import site.metacoding.red.domain.boards.BoardsDao;
-import site.metacoding.red.domain.users.Users;
-import site.metacoding.red.domain.users.UsersDao;
 import site.metacoding.red.web.dto.request.boards.UpdateDto;
 import site.metacoding.red.web.dto.request.boards.WriteDto;
-import site.metacoding.red.web.dto.request.users.JoinDto;
 import site.metacoding.red.web.dto.response.RespDto;
 
 @RequiredArgsConstructor
@@ -25,12 +22,17 @@ public class BoardsController {
 	
 	@GetMapping("/boards/{id}")
 	public RespDto<?> getBoards(@PathVariable Integer id) {
-		return new RespDto<>(1, "${id} 를 찾았습니다", boardsDao.findById(id));
+		return new RespDto<>(1, "id 로 찾았습니다", boardsDao.findById(id));
+	}
+	
+	@GetMapping("/boards/users/{id}")
+	public RespDto<?> getBoardsJoinUsers(@PathVariable Integer id) {
+		return new RespDto<>(1, "id 로 찾았습니다", boardsDao.findBoardsById(id));
 	}
 	
 	@GetMapping("/boards")
 	public RespDto<?> getBoards() {
-		return new RespDto<>(1, "모든 사용자를 찾았습니다", boardsDao.findAll());
+		return new RespDto<>(1, "모든 컨텐츠 찾았습니다", boardsDao.findAll());
 	}
 	
 	@PostMapping("/boards")
@@ -71,7 +73,7 @@ public class BoardsController {
 	public RespDto<?> updateContent(@PathVariable Integer id, String content){		
 		Boards boardsPS = boardsDao.findById(id);
 		
-		boardsPS.제목수정(content);
+		boardsPS.내용수정(content);
 		
 		boardsDao.update(boardsPS);
 		

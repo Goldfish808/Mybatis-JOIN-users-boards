@@ -8,5 +8,4 @@ import lombok.Setter;
 public class UpdateDto {
 	public String title;
 	public String content;
-
 }

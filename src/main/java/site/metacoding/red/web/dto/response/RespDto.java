@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RespDto<T> {
-	public Integer resultcode;
+	public Integer code;
 	public String msg;
 	public T body;
 }

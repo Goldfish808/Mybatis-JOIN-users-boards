@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import org.springframework.jdbc.object.UpdatableSqlQuery;
 
 import lombok.Getter;
-import lombok.Setter;
 import site.metacoding.red.web.dto.request.users.UpdateDto;
 
 
