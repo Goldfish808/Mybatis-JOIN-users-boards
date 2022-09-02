@@ -17,6 +17,17 @@
 		where b.id =  #{id}
 	</select>
 	
+	<!-- 강사님과의 수업  -->
+	<!-- DB 에서는 모든 데이터를 다 가지고 온다 아스트링크 말고 쿼리 볼 수 있게 다 적음-->
+		<select id="findByIdDetail" resultType="site.metacoding.red.domain.boards.mapper.BoardsDetail">
+		SELECT b.id, b.title, b.content, b.usersId, b.createdAt,
+					 <!-- u.id, : b.id와 충돌나고, 어차피 b.usersId가 있기 때문에 안씀 쓰면 나중에 충돌남 -->
+					 u.username, u.password, u.email
+		from boards b INNER JOIN  users u
+		ON b.usersId = u.id 
+		where b.id =  #{id}
+	</select>
+	
 	<select id="findById" resultType="site.metacoding.red.domain.boards.Boards">
 		SELECT * FROM boards WHERE id = #{id}
 	</select>

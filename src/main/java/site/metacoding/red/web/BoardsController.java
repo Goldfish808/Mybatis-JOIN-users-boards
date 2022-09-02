@@ -14,17 +14,16 @@ import site.metacoding.red.web.dto.request.boards.UpdateDto;
 import site.metacoding.red.web.dto.request.boards.WriteDto;
 import site.metacoding.red.web.dto.response.RespDto;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor //final 이 붙은 객체만 생성자를 만듦
 @RestController
 public class BoardsController {
-
-	private final BoardsDao boardsDao;
+	private final BoardsDao boardsDao; //컴퍼지션으로 has 관계 맺기
 	
 	@GetMapping("/boards/{id}")
 	public RespDto<?> getBoards(@PathVariable Integer id) {
-		return new RespDto<>(1, "id 로 찾았습니다", boardsDao.findById(id));
+		return new RespDto<>(1, "id 로 찾았습니다", boardsDao.findByIdDetail(id));
 	}
-	
+
 	@GetMapping("/boards/users/{id}")
 	public RespDto<?> getBoardsJoinUsers(@PathVariable Integer id) {
 		return new RespDto<>(1, "id 로 찾았습니다", boardsDao.findBoardsById(id));
